@@ -1,0 +1,40 @@
+{
+  "annotations": {
+    "changelogDate": "20241103205920"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "dataDeMatricula",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "StatusMatricula",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ATIVO,INATIVO,TRANCADO"
+    }
+  ],
+  "name": "Matricula",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "aluno",
+      "relationshipName": "aluno",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "curso",
+      "relationshipName": "curso",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

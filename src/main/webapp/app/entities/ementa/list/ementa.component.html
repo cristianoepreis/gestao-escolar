@@ -1,0 +1,168 @@
+<div>
+  <h2 id="page-heading" data-cy="EmentaHeading">
+    <span jhiTranslate="gestaoEscolarApp.ementa.home.title">Ementas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="gestaoEscolarApp.ementa.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-ementa"
+        [routerLink]="['/ementa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gestaoEscolarApp.ementa.home.createLabel">Criar novo Ementa</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (ementas?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="gestaoEscolarApp.ementa.home.notFound">Nenhum Ementa encontrado</span>
+    </div>
+  }
+
+  @if (ementas && ementas.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="descricao">
+              <div class="d-flex">
+                <span jhiTranslate="gestaoEscolarApp.ementa.descricao">Descricao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="bibliografiaBasica">
+              <div class="d-flex">
+                <span jhiTranslate="gestaoEscolarApp.ementa.bibliografiaBasica">Bibliografia Basica</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="bibliografiaComplementar">
+              <div class="d-flex">
+                <span jhiTranslate="gestaoEscolarApp.ementa.bibliografiaComplementar">Bibliografia Complementar</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="praticaLaboratorial">
+              <div class="d-flex">
+                <span jhiTranslate="gestaoEscolarApp.ementa.praticaLaboratorial">Pratica Laboratorial</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="professor.nome">
+              <div class="d-flex">
+                <span jhiTranslate="gestaoEscolarApp.ementa.professor">Professor</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="curso.nome">
+              <div class="d-flex">
+                <span jhiTranslate="gestaoEscolarApp.ementa.curso">Curso</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="disciplina.nome">
+              <div class="d-flex">
+                <span jhiTranslate="gestaoEscolarApp.ementa.disciplina">Disciplina</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (ementa of ementas; track trackId(ementa)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/ementa', ementa.id, 'view']">{{ ementa.id }}</a>
+              </td>
+              <td>{{ ementa.descricao }}</td>
+              <td>{{ ementa.bibliografiaBasica }}</td>
+              <td>{{ ementa.bibliografiaComplementar }}</td>
+              <td>{{ ementa.praticaLaboratorial }}</td>
+              <td>
+                @if (ementa.professor) {
+                  <div>
+                    <a [routerLink]="['/professor', ementa.professor.id, 'view']">{{ ementa.professor.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (ementa.curso) {
+                  <div>
+                    <a [routerLink]="['/curso', ementa.curso.id, 'view']">{{ ementa.curso.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (ementa.disciplina) {
+                  <div>
+                    <a [routerLink]="['/disciplina', ementa.disciplina.id, 'view']">{{ ementa.disciplina.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/ementa', ementa.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a [routerLink]="['/ementa', ementa.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(ementa)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (ementas && ementas.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

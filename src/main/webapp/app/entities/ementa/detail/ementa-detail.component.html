@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (ementa(); as ementaRef) {
+      <div>
+        <h2 data-cy="ementaDetailsHeading"><span jhiTranslate="gestaoEscolarApp.ementa.detail.title">Ementa</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ ementaRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestaoEscolarApp.ementa.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ ementaRef.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestaoEscolarApp.ementa.bibliografiaBasica">Bibliografia Basica</span></dt>
+          <dd>
+            <span>{{ ementaRef.bibliografiaBasica }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestaoEscolarApp.ementa.bibliografiaComplementar">Bibliografia Complementar</span></dt>
+          <dd>
+            <span>{{ ementaRef.bibliografiaComplementar }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestaoEscolarApp.ementa.praticaLaboratorial">Pratica Laboratorial</span></dt>
+          <dd>
+            <span>{{ ementaRef.praticaLaboratorial }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestaoEscolarApp.ementa.professor">Professor</span></dt>
+          <dd>
+            @if (ementa()!.professor) {
+              <div>
+                <a [routerLink]="['/professor', ementa()!.professor?.id, 'view']">{{ ementaRef.professor?.nome }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="gestaoEscolarApp.ementa.curso">Curso</span></dt>
+          <dd>
+            @if (ementa()!.curso) {
+              <div>
+                <a [routerLink]="['/curso', ementa()!.curso?.id, 'view']">{{ ementaRef.curso?.nome }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="gestaoEscolarApp.ementa.disciplina">Disciplina</span></dt>
+          <dd>
+            @if (ementa()!.disciplina) {
+              <div>
+                <a [routerLink]="['/disciplina', ementa()!.disciplina?.id, 'view']">{{ ementaRef.disciplina?.nome }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/ementa', ementaRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

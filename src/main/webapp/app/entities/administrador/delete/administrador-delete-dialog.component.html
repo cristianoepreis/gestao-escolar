@@ -1,0 +1,28 @@
+@if (administrador) {
+  <form name="deleteForm" (ngSubmit)="confirmDelete(administrador.id!)">
+    <div class="modal-header">
+      <h4 class="modal-title" data-cy="administradorDeleteDialogHeading" jhiTranslate="entity.delete.title">Confirme a exclusão</h4>
+    </div>
+
+    <div class="modal-body">
+      <jhi-alert-error></jhi-alert-error>
+      <p
+        id="jhi-delete-administrador-heading"
+        jhiTranslate="gestaoEscolarApp.administrador.delete.question"
+        [translateValues]="{ id: administrador.id }"
+      >
+        Tem certeza de que deseja excluir Administrador {{ administrador.id }}?
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+        <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+      </button>
+
+      <button id="jhi-confirm-delete-administrador" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
+        <fa-icon icon="times"></fa-icon>&nbsp;<span jhiTranslate="entity.action.delete">Excluir</span>
+      </button>
+    </div>
+  </form>
+}

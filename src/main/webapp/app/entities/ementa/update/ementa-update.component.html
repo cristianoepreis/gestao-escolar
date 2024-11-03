@@ -1,0 +1,124 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-ementa-heading" data-cy="EmentaCreateUpdateHeading" jhiTranslate="gestaoEscolarApp.ementa.home.createOrEditLabel">
+        Criar ou editar Ementa
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="gestaoEscolarApp.ementa.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_descricao" jhiTranslate="gestaoEscolarApp.ementa.descricao">Descricao</label>
+          <textarea class="form-control" name="descricao" id="field_descricao" data-cy="descricao" formControlName="descricao"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_bibliografiaBasica" jhiTranslate="gestaoEscolarApp.ementa.bibliografiaBasica"
+            >Bibliografia Basica</label
+          >
+          <textarea
+            class="form-control"
+            name="bibliografiaBasica"
+            id="field_bibliografiaBasica"
+            data-cy="bibliografiaBasica"
+            formControlName="bibliografiaBasica"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_bibliografiaComplementar" jhiTranslate="gestaoEscolarApp.ementa.bibliografiaComplementar"
+            >Bibliografia Complementar</label
+          >
+          <textarea
+            class="form-control"
+            name="bibliografiaComplementar"
+            id="field_bibliografiaComplementar"
+            data-cy="bibliografiaComplementar"
+            formControlName="bibliografiaComplementar"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_praticaLaboratorial" jhiTranslate="gestaoEscolarApp.ementa.praticaLaboratorial"
+            >Pratica Laboratorial</label
+          >
+          <textarea
+            class="form-control"
+            name="praticaLaboratorial"
+            id="field_praticaLaboratorial"
+            data-cy="praticaLaboratorial"
+            formControlName="praticaLaboratorial"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_professor" jhiTranslate="gestaoEscolarApp.ementa.professor">Professor</label>
+          <select
+            class="form-control"
+            id="field_professor"
+            data-cy="professor"
+            name="professor"
+            formControlName="professor"
+            [compareWith]="compareProfessor"
+          >
+            <option [ngValue]="null"></option>
+            @for (professorOption of professorsSharedCollection; track $index) {
+              <option [ngValue]="professorOption">{{ professorOption.nome }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_curso" jhiTranslate="gestaoEscolarApp.ementa.curso">Curso</label>
+          <select class="form-control" id="field_curso" data-cy="curso" name="curso" formControlName="curso" [compareWith]="compareCurso">
+            <option [ngValue]="null"></option>
+            @for (cursoOption of cursosSharedCollection; track $index) {
+              <option [ngValue]="cursoOption">{{ cursoOption.nome }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_disciplina" jhiTranslate="gestaoEscolarApp.ementa.disciplina">Disciplina</label>
+          <select
+            class="form-control"
+            id="field_disciplina"
+            data-cy="disciplina"
+            name="disciplina"
+            formControlName="disciplina"
+            [compareWith]="compareDisciplina"
+          >
+            <option [ngValue]="null"></option>
+            @for (disciplinaOption of disciplinasSharedCollection; track $index) {
+              <option [ngValue]="disciplinaOption">{{ disciplinaOption.nome }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

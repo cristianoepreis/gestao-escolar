@@ -1,0 +1,107 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-matricula-heading"
+        data-cy="MatriculaCreateUpdateHeading"
+        jhiTranslate="gestaoEscolarApp.matricula.home.createOrEditLabel"
+      >
+        Criar ou editar Matricula
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="gestaoEscolarApp.matricula.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let dataDeMatriculaRef = editForm.get('dataDeMatricula')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_dataDeMatricula" jhiTranslate="gestaoEscolarApp.matricula.dataDeMatricula"
+            >Data De Matricula</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dataDeMatricula"
+              data-cy="dataDeMatricula"
+              type="text"
+              class="form-control"
+              name="dataDeMatricula"
+              ngbDatepicker
+              #dataDeMatriculaDp="ngbDatepicker"
+              formControlName="dataDeMatricula"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dataDeMatriculaDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          @if (dataDeMatriculaRef.invalid && (dataDeMatriculaRef.dirty || dataDeMatriculaRef.touched)) {
+            <div>
+              @if (editForm.get('dataDeMatricula')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let statusRef = editForm.get('status')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_status" jhiTranslate="gestaoEscolarApp.matricula.status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'gestaoEscolarApp.StatusMatricula.null' | translate }}</option>
+            @for (statusMatricula of statusMatriculaValues; track $index) {
+              <option [value]="statusMatricula">{{ 'gestaoEscolarApp.StatusMatricula.' + statusMatricula | translate }}</option>
+            }
+          </select>
+          @if (statusRef.invalid && (statusRef.dirty || statusRef.touched)) {
+            <div>
+              @if (editForm.get('status')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_aluno" jhiTranslate="gestaoEscolarApp.matricula.aluno">Aluno</label>
+          <select class="form-control" id="field_aluno" data-cy="aluno" name="aluno" formControlName="aluno" [compareWith]="compareAluno">
+            <option [ngValue]="null"></option>
+            @for (alunoOption of alunosSharedCollection; track $index) {
+              <option [ngValue]="alunoOption">{{ alunoOption.nome }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_curso" jhiTranslate="gestaoEscolarApp.matricula.curso">Curso</label>
+          <select class="form-control" id="field_curso" data-cy="curso" name="curso" formControlName="curso" [compareWith]="compareCurso">
+            <option [ngValue]="null"></option>
+            @for (cursoOption of cursosSharedCollection; track $index) {
+              <option [ngValue]="cursoOption">{{ cursoOption.nome }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

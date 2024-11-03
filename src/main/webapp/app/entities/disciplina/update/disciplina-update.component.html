@@ -1,0 +1,119 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-disciplina-heading"
+        data-cy="DisciplinaCreateUpdateHeading"
+        jhiTranslate="gestaoEscolarApp.disciplina.home.createOrEditLabel"
+      >
+        Criar ou editar Disciplina
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="gestaoEscolarApp.disciplina.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let nomeRef = editForm.get('nome')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_nome" jhiTranslate="gestaoEscolarApp.disciplina.nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+          @if (nomeRef.invalid && (nomeRef.dirty || nomeRef.touched)) {
+            <div>
+              @if (editForm.get('nome')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let codigoRef = editForm.get('codigo')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_codigo" jhiTranslate="gestaoEscolarApp.disciplina.codigo">Codigo</label>
+          <input type="text" class="form-control" name="codigo" id="field_codigo" data-cy="codigo" formControlName="codigo" />
+          @if (codigoRef.invalid && (codigoRef.dirty || codigoRef.touched)) {
+            <div>
+              @if (editForm.get('codigo')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let cargaHorariaRef = editForm.get('cargaHoraria')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_cargaHoraria" jhiTranslate="gestaoEscolarApp.disciplina.cargaHoraria">Carga Horaria</label>
+          <input
+            type="number"
+            class="form-control"
+            name="cargaHoraria"
+            id="field_cargaHoraria"
+            data-cy="cargaHoraria"
+            formControlName="cargaHoraria"
+          />
+          @if (cargaHorariaRef.invalid && (cargaHorariaRef.dirty || cargaHorariaRef.touched)) {
+            <div>
+              @if (editForm.get('cargaHoraria')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('cargaHoraria')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >Este campo é do tipo numérico.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_curso" jhiTranslate="gestaoEscolarApp.disciplina.curso">Curso</label>
+          <select class="form-control" id="field_curso" data-cy="curso" name="curso" formControlName="curso" [compareWith]="compareCurso">
+            <option [ngValue]="null"></option>
+            @for (cursoOption of cursosSharedCollection; track $index) {
+              <option [ngValue]="cursoOption">{{ cursoOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="field_professors" jhiTranslate="gestaoEscolarApp.disciplina.professor">Professor</label>
+          <select
+            class="form-control"
+            id="field_professors"
+            data-cy="professor"
+            multiple
+            name="professors"
+            formControlName="professors"
+            [compareWith]="compareProfessor"
+          >
+            @for (professorOption of professorsSharedCollection; track $index) {
+              <option [ngValue]="professorOption">{{ professorOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

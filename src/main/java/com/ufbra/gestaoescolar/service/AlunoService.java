@@ -1,0 +1,121 @@
+package com.ufbra.gestaoescolar.service;
+
+import com.ufbra.gestaoescolar.domain.Aluno;
+import com.ufbra.gestaoescolar.repository.AlunoRepository;
+import com.ufbra.gestaoescolar.service.dto.AlunoDTO;
+import com.ufbra.gestaoescolar.service.mapper.AlunoMapper;
+import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ * Service Implementation for managing {@link com.ufbra.gestaoescolar.domain.Aluno}.
+ */
+@Service
+@Transactional
+public class AlunoService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(AlunoService.class);
+
+    private final AlunoRepository alunoRepository;
+
+    private final AlunoMapper alunoMapper;
+
+    public AlunoService(AlunoRepository alunoRepository, AlunoMapper alunoMapper) {
+        this.alunoRepository = alunoRepository;
+        this.alunoMapper = alunoMapper;
+    }
+
+    /**
+     * Save a aluno.
+     *
+     * @param alunoDTO the entity to save.
+     * @return the persisted entity.
+     */
+    public AlunoDTO save(AlunoDTO alunoDTO) {
+        LOG.debug("Request to save Aluno : {}", alunoDTO);
+        Aluno aluno = alunoMapper.toEntity(alunoDTO);
+        aluno = alunoRepository.save(aluno);
+        return alunoMapper.toDto(aluno);
+    }
+
+    /**
+     * Update a aluno.
+     *
+     * @param alunoDTO the entity to save.
+     * @return the persisted entity.
+     */
+    public AlunoDTO update(AlunoDTO alunoDTO) {
+        LOG.debug("Request to update Aluno : {}", alunoDTO);
+        Aluno aluno = alunoMapper.toEntity(alunoDTO);
+        aluno = alunoRepository.save(aluno);
+        return alunoMapper.toDto(aluno);
+    }
+
+    /**
+     * Partially update a aluno.
+     *
+     * @param alunoDTO the entity to update partially.
+     * @return the persisted entity.
+     */
+    public Optional<AlunoDTO> partialUpdate(AlunoDTO alunoDTO) {
+        LOG.debug("Request to partially update Aluno : {}", alunoDTO);
+
+        return alunoRepository
+            .findById(alunoDTO.getId())
+            .map(existingAluno -> {
+                alunoMapper.partialUpdate(existingAluno, alunoDTO);
+
+                return existingAluno;
+            })
+            .map(alunoRepository::save)
+            .map(alunoMapper::toDto);
+    }
+
+    /**
+     * Get all the alunos.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    @Transactional(readOnly = true)
+    public Page<AlunoDTO> findAll(Pageable pageable) {
+        LOG.debug("Request to get all Alunos");
+        return alunoRepository.findAll(pageable).map(alunoMapper::toDto);
+    }
+
+    /**
+     * Get all the alunos with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    public Page<AlunoDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return alunoRepository.findAllWithEagerRelationships(pageable).map(alunoMapper::toDto);
+    }
+
+    /**
+     * Get one aluno by id.
+     *
+     * @param id the id of the entity.
+     * @return the entity.
+     */
+    @Transactional(readOnly = true)
+    public Optional<AlunoDTO> findOne(Long id) {
+        LOG.debug("Request to get Aluno : {}", id);
+        return alunoRepository.findOneWithEagerRelationships(id).map(alunoMapper::toDto);
+    }
+
+    /**
+     * Delete the aluno by id.
+     *
+     * @param id the id of the entity.
+     */
+    public void delete(Long id) {
+        LOG.debug("Request to delete Aluno : {}", id);
+        alunoRepository.deleteById(id);
+    }
+}

@@ -1,0 +1,53 @@
+{
+  "annotations": {
+    "changelogDate": "20241103205921"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "descricao",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "bibliografiaBasica",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "bibliografiaComplementar",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "praticaLaboratorial",
+      "fieldType": "TextBlob"
+    }
+  ],
+  "name": "Ementa",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "professor",
+      "relationshipName": "professor",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "curso",
+      "relationshipName": "curso",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "disciplina",
+      "otherEntityRelationshipName": "ementa",
+      "relationshipName": "disciplina",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

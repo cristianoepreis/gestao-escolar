@@ -1,0 +1,116 @@
+// Definindo as entidades para o sistema escolar
+
+entity Aluno {
+    nome String required,
+    dataDeNascimento LocalDate required,
+    cpf String required,
+    endereco String,
+    telefone String,
+    email String required
+}
+
+entity Professor {
+    nome String required,
+    especializacao String,
+    telefone String,
+    email String required
+}
+
+entity Disciplina {
+    nome String required,
+    codigo String required,
+    cargaHoraria Integer required
+}
+
+entity Curso {
+    nome String required,
+    descricao String,
+    duracao Integer required
+}
+
+entity Nota {
+    pontuacao Float required,
+    data LocalDate required
+}
+
+entity Matricula {
+    dataDeMatricula LocalDate required,
+    status StatusMatricula required
+}
+
+entity Ementa {
+    descricao TextBlob,
+    bibliografiaBasica TextBlob,
+    bibliografiaComplementar TextBlob,
+    praticaLaboratorial TextBlob
+}
+
+entity Administrador {
+    nome String required,
+    telefone String,
+    email String required
+}
+
+// Enumerações
+enum StatusMatricula {
+    ATIVO,
+    INATIVO,
+    TRANCADO
+}
+
+// Relacionamentos e Ajustes de Nomes
+
+// Um aluno pode estar matriculado em vários cursos, e um curso pode ter vários alunos
+relationship ManyToMany {
+    Aluno{curso(nome)} to Curso{aluno}
+}
+
+// Um professor pode lecionar várias disciplinas, e cada disciplina pode ter vários professores
+relationship ManyToMany {
+    Professor{disciplina(nome)} to Disciplina{professor}
+}
+
+// Um curso pode conter várias disciplinas, mas cada disciplina pertence a apenas um curso
+relationship OneToMany {
+    Curso{disciplina(nome)} to Disciplina{curso}
+}
+
+// Uma disciplina pode ter várias ementas, mas cada ementa está associada a uma única disciplina
+relationship OneToMany {
+    Disciplina{ementa} to Ementa{disciplina(nome)}
+}
+
+// Um professor pode estar associado a várias ementas, mas cada ementa pertence a um único professor
+relationship ManyToOne {
+    Ementa{professor(nome)} to Professor
+}
+
+// Uma ementa pertence a um único curso, mas um curso pode ter várias ementas
+relationship ManyToOne {
+    Ementa{curso(nome)} to Curso
+}
+
+// Um aluno pode ter várias notas, mas cada nota pertence a apenas um aluno
+relationship OneToMany {
+    Aluno{nota} to Nota{aluno(nome)}
+}
+
+// Uma nota está associada a uma disciplina, mas uma disciplina pode ter várias notas
+relationship ManyToOne {
+    Nota{disciplina(nome)} to Disciplina
+}
+
+// Um aluno possui uma ou mais matrículas, mas cada matrícula está associada a um único aluno
+relationship ManyToOne {
+    Matricula{aluno(nome)} to Aluno
+}
+
+// Uma matrícula está associada a um curso, mas um curso pode ter várias matrículas
+relationship ManyToOne {
+    Matricula{curso(nome)} to Curso
+}
+
+// Configurações adicionais
+paginate Aluno, Professor, Disciplina, Curso, Nota, Matricula, Ementa, Administrador with pagination
+dto * with mapstruct
+service * with serviceClass

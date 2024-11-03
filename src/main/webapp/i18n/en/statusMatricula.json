@@ -1,0 +1,10 @@
+{
+  "gestaoEscolarApp": {
+    "StatusMatricula": {
+      "null": "",
+      "ATIVO": "ATIVO",
+      "INATIVO": "INATIVO",
+      "TRANCADO": "TRANCADO"
+    }
+  }
+}

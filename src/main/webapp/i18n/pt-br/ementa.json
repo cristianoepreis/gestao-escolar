@@ -1,0 +1,30 @@
+{
+  "gestaoEscolarApp": {
+    "ementa": {
+      "home": {
+        "title": "Ementas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Ementa",
+        "createOrEditLabel": "Criar ou editar Ementa",
+        "notFound": "Nenhum Ementa encontrado"
+      },
+      "created": "Um novo Ementa foi criado com o identificador {{ param }}",
+      "updated": "Um Ementa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Ementa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Ementa {{ id }}?"
+      },
+      "detail": {
+        "title": "Ementa"
+      },
+      "id": "ID",
+      "descricao": "Descricao",
+      "bibliografiaBasica": "Bibliografia Basica",
+      "bibliografiaComplementar": "Bibliografia Complementar",
+      "praticaLaboratorial": "Pratica Laboratorial",
+      "professor": "Professor",
+      "curso": "Curso",
+      "disciplina": "Disciplina"
+    }
+  }
+}

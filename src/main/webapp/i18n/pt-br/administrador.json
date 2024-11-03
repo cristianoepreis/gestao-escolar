@@ -1,0 +1,26 @@
+{
+  "gestaoEscolarApp": {
+    "administrador": {
+      "home": {
+        "title": "Administradors",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Administrador",
+        "createOrEditLabel": "Criar ou editar Administrador",
+        "notFound": "Nenhum Administrador encontrado"
+      },
+      "created": "Um novo Administrador foi criado com o identificador {{ param }}",
+      "updated": "Um Administrador foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Administrador foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Administrador {{ id }}?"
+      },
+      "detail": {
+        "title": "Administrador"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "telefone": "Telefone",
+      "email": "Email"
+    }
+  }
+}

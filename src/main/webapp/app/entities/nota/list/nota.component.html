@@ -1,0 +1,139 @@
+<div>
+  <h2 id="page-heading" data-cy="NotaHeading">
+    <span jhiTranslate="gestaoEscolarApp.nota.home.title">Notas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="gestaoEscolarApp.nota.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-nota"
+        [routerLink]="['/nota/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gestaoEscolarApp.nota.home.createLabel">Criar novo Nota</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (notas?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="gestaoEscolarApp.nota.home.notFound">Nenhum Nota encontrado</span>
+    </div>
+  }
+
+  @if (notas && notas.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pontuacao">
+              <div class="d-flex">
+                <span jhiTranslate="gestaoEscolarApp.nota.pontuacao">Pontuacao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="data">
+              <div class="d-flex">
+                <span jhiTranslate="gestaoEscolarApp.nota.data">Data</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="disciplina.nome">
+              <div class="d-flex">
+                <span jhiTranslate="gestaoEscolarApp.nota.disciplina">Disciplina</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="aluno.nome">
+              <div class="d-flex">
+                <span jhiTranslate="gestaoEscolarApp.nota.aluno">Aluno</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (nota of notas; track trackId(nota)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/nota', nota.id, 'view']">{{ nota.id }}</a>
+              </td>
+              <td>{{ nota.pontuacao }}</td>
+              <td>{{ nota.data | formatMediumDate }}</td>
+              <td>
+                @if (nota.disciplina) {
+                  <div>
+                    <a [routerLink]="['/disciplina', nota.disciplina.id, 'view']">{{ nota.disciplina.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (nota.aluno) {
+                  <div>
+                    <a [routerLink]="['/aluno', nota.aluno.id, 'view']">{{ nota.aluno.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/nota', nota.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a [routerLink]="['/nota', nota.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(nota)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (notas && notas.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>
