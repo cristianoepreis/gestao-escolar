@@ -26,11 +26,13 @@ public interface DisciplinaMapper extends EntityMapper<DisciplinaDTO, Disciplina
     @Named("cursoId")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
+    @Mapping(target = "nome", source = "nome")
     CursoDTO toDtoCursoId(Curso curso);
 
     @Named("professorId")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
+    @Mapping(target = "nome", source = "nome")
     ProfessorDTO toDtoProfessorId(Professor professor);
 
     @Named("professorIdSet")

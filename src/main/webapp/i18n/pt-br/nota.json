@@ -4,21 +4,21 @@
       "home": {
         "title": "Notas",
         "refreshListLabel": "Atualizar lista",
-        "createLabel": "Criar novo Nota",
+        "createLabel": "Criar nova Nota",
         "createOrEditLabel": "Criar ou editar Nota",
-        "notFound": "Nenhum Nota encontrado"
+        "notFound": "Nenhuma Nota encontrada"
       },
-      "created": "Um novo Nota foi criado com o identificador {{ param }}",
-      "updated": "Um Nota foi atualizado com o identificador {{ param }}",
-      "deleted": "Um Nota foi excluído com o identificador {{ param }}",
+      "created": "Uma nova Nota foi criado com o identificador {{ param }}",
+      "updated": "Uma Nota foi atualizado com o identificador {{ param }}",
+      "deleted": "Uma Nota foi excluído com o identificador {{ param }}",
       "delete": {
-        "question": "Tem certeza de que deseja excluir Nota {{ id }}?"
+        "question": "Tem certeza de que deseja excluir a Nota do Aluno {{ id }}?"
       },
       "detail": {
         "title": "Nota"
       },
       "id": "ID",
-      "pontuacao": "Pontuacao",
+      "pontuacao": "Pontuação",
       "data": "Data",
       "disciplina": "Disciplina",
       "aluno": "Aluno"

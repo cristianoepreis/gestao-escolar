@@ -2,7 +2,7 @@
   "gestaoEscolarApp": {
     "professor": {
       "home": {
-        "title": "Professors",
+        "title": "Professores",
         "refreshListLabel": "Atualizar lista",
         "createLabel": "Criar novo Professor",
         "createOrEditLabel": "Criar ou editar Professor",
@@ -12,14 +12,14 @@
       "updated": "Um Professor foi atualizado com o identificador {{ param }}",
       "deleted": "Um Professor foi excluído com o identificador {{ param }}",
       "delete": {
-        "question": "Tem certeza de que deseja excluir Professor {{ id }}?"
+        "question": "Tem certeza de que deseja excluir Professor {{ nome }}?"
       },
       "detail": {
         "title": "Professor"
       },
       "id": "ID",
       "nome": "Nome",
-      "especializacao": "Especializacao",
+      "especializacao": "Especialização",
       "telefone": "Telefone",
       "email": "Email",
       "disciplina": "Disciplina"

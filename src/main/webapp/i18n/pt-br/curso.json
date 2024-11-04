@@ -12,14 +12,14 @@
       "updated": "Um Curso foi atualizado com o identificador {{ param }}",
       "deleted": "Um Curso foi excluído com o identificador {{ param }}",
       "delete": {
-        "question": "Tem certeza de que deseja excluir Curso {{ id }}?"
+        "question": "Tem certeza de que deseja excluir Curso {{ nome }}?"
       },
       "detail": {
         "title": "Curso"
       },
       "id": "ID",
       "nome": "Nome",
-      "descricao": "Descricao",
+      "descricao": "Descrição",
       "duracao": "Duracao",
       "disciplina": "Disciplina",
       "aluno": "Aluno"

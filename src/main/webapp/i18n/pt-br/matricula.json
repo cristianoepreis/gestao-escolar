@@ -2,23 +2,23 @@
   "gestaoEscolarApp": {
     "matricula": {
       "home": {
-        "title": "Matriculas",
+        "title": "Matrículas",
         "refreshListLabel": "Atualizar lista",
-        "createLabel": "Criar novo Matricula",
-        "createOrEditLabel": "Criar ou editar Matricula",
-        "notFound": "Nenhum Matricula encontrado"
+        "createLabel": "Criar novo Matrícula",
+        "createOrEditLabel": "Criar ou editar Matrícula",
+        "notFound": "Nenhuma Matrícula encontrada"
       },
-      "created": "Um novo Matricula foi criado com o identificador {{ param }}",
-      "updated": "Um Matricula foi atualizado com o identificador {{ param }}",
-      "deleted": "Um Matricula foi excluído com o identificador {{ param }}",
+      "created": "Um novo Matrícula foi criado com o identificador {{ param }}",
+      "updated": "Um Matrícula foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Matrícula foi excluído com o identificador {{ param }}",
       "delete": {
-        "question": "Tem certeza de que deseja excluir Matricula {{ id }}?"
+        "question": "Tem certeza de que deseja excluir a Matrícula do aluno {{ id }}?"
       },
       "detail": {
-        "title": "Matricula"
+        "title": "Matrícula"
       },
       "id": "ID",
-      "dataDeMatricula": "Data De Matricula",
+      "dataDeMatricula": "Data De Matrícula",
       "status": "Status",
       "aluno": "Aluno",
       "curso": "Curso"

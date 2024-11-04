@@ -5,7 +5,7 @@ export interface ICurso {
   nome?: string | null;
   descricao?: string | null;
   duracao?: number | null;
-  alunos?: Pick<IAluno, 'id'>[] | null;
+  alunos?: Pick<IAluno, 'id' | 'nome'>[] | null;
 }
 
 export type NewCurso = Omit<ICurso, 'id'> & { id: null };

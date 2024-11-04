@@ -2,7 +2,7 @@
   "gestaoEscolarApp": {
     "administrador": {
       "home": {
-        "title": "Administradors",
+        "title": "Administradores",
         "refreshListLabel": "Atualizar lista",
         "createLabel": "Criar novo Administrador",
         "createOrEditLabel": "Criar ou editar Administrador",
@@ -12,7 +12,7 @@
       "updated": "Um Administrador foi atualizado com o identificador {{ param }}",
       "deleted": "Um Administrador foi excluído com o identificador {{ param }}",
       "delete": {
-        "question": "Tem certeza de que deseja excluir Administrador {{ id }}?"
+        "question": "Tem certeza de que deseja excluir Administrador {{ nome }}?"
       },
       "detail": {
         "title": "Administrador"

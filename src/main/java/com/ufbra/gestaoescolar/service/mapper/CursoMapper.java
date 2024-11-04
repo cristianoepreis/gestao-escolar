@@ -23,6 +23,7 @@ public interface CursoMapper extends EntityMapper<CursoDTO, Curso> {
     @Named("alunoId")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
+    @Mapping(target = "nome", source = "nome")
     AlunoDTO toDtoAlunoId(Aluno aluno);
 
     @Named("alunoIdSet")
