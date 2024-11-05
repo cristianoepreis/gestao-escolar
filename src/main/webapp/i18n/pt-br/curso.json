@@ -20,9 +20,10 @@
       "id": "ID",
       "nome": "Nome",
       "descricao": "Descrição",
-      "duracao": "Duracao",
+      "duracao": "Duração",
       "disciplina": "Disciplina",
-      "aluno": "Aluno"
+      "aluno": "Aluno",
+      "alunoList": "Alunos"
     }
   }
 }

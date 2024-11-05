@@ -31,7 +31,7 @@
           <dd>
             @if (disciplina()!.curso) {
               <div>
-                <a [routerLink]="['/curso', disciplina()!.curso?.id, 'view']">{{ disciplinaRef.curso?.id }}</a>
+                <a [routerLink]="['/curso', disciplina()!.curso?.id, 'view']">{{ disciplinaRef.curso?.nome }}</a>
               </div>
             }
           </dd>
@@ -39,7 +39,7 @@
           <dd>
             @for (professor of disciplinaRef.professors; track $index; let last = $last) {
               <span>
-                <a [routerLink]="['/professor', professor.id, 'view']">{{ professor?.id }}</a
+                <a [routerLink]="['/professor', professor.id, 'view']">{{ professor?.nome }}</a
                 >{{ last ? '' : ', ' }}
               </span>
             }

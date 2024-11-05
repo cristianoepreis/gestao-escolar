@@ -17,4 +17,8 @@ export class CursoDetailComponent {
   previousState(): void {
     window.history.back();
   }
+
+  // navigateToWithComponentValues(event: SortState): void {
+  //   this.handleNavigation(this.page, event);
+  // }
 }
