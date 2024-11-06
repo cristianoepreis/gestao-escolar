@@ -93,7 +93,7 @@
             [compareWith]="compareProfessor"
           >
             @for (professorOption of professorsSharedCollection; track $index) {
-              <option [ngValue]="professorOption">{{ professorOption.id }}</option>
+              <option [ngValue]="professorOption">{{ professorOption.nome }}</option>
             }
           </select>
         </div>

@@ -27,28 +27,24 @@
           <dd>
             <span>{{ cursoRef.duracao }}</span>
           </dd>
-          <div class="table-responsive table-entities" id="entities">
-            <table class="table table-striped" aria-describedby="page-heading">
-              <thead>
-                <th scope="col" jhiSortBy="aluno">
-                  <div class="d-flex align-items-center">
-                    <span jhiTranslate="gestaoEscolarApp.curso.alunoList">Aluno</span>
-                  </div>
-                </th>
-                <th scope="col"></th>
-              </thead>
-              <tbody>
-                @for (aluno of cursoRef.alunos; track $index; let last = $last) {
-                  <tr data-cy="entityTable">
-                    <td>
-                      <a [routerLink]="['/aluno', aluno.id, 'view']">{{ aluno?.nome }}</a
-                      >{{ last ? '' : ', ' }}
-                    </td>
-                  </tr>
-                }
-              </tbody>
-            </table>
-          </div>
+          <dt><span jhiTranslate="gestaoEscolarApp.curso.alunoList">Alunos</span></dt>
+          <dd>
+            <div class="table-responsive table-entities" id="entities">
+              <table class="table table-striped w-100" aria-describedby="page-heading">
+                <tbody>
+                  @for (aluno of cursoRef.alunos; track $index; let last = $last) {
+                    <tr data-cy="entityTable">
+                      <td>
+                        <a [routerLink]="['/aluno', aluno.id, 'view']">{{ aluno?.nome }}</a
+                        >{{ last ? '' : ' ' }}
+                      </td>
+                      <td></td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </dd>
         </dl>
 
         <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

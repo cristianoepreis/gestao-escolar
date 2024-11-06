@@ -17,7 +17,15 @@
 
         <div class="mb-3">
           <label class="form-label" for="field_descricao" jhiTranslate="gestaoEscolarApp.ementa.descricao">Descricao</label>
-          <textarea class="form-control" name="descricao" id="field_descricao" data-cy="descricao" formControlName="descricao"></textarea>
+          <textarea
+            class="form-control w-100"
+            maxlength="2000"
+            rows="10"
+            name="descricao"
+            id="field_descricao"
+            data-cy="descricao"
+            formControlName="descricao"
+          ></textarea>
         </div>
 
         <div class="mb-3">
@@ -25,7 +33,9 @@
             >Bibliografia Basica</label
           >
           <textarea
-            class="form-control"
+            class="form-control w-100"
+            maxlength="2000"
+            rows="10"
             name="bibliografiaBasica"
             id="field_bibliografiaBasica"
             data-cy="bibliografiaBasica"
@@ -38,7 +48,9 @@
             >Bibliografia Complementar</label
           >
           <textarea
-            class="form-control"
+            class="form-control w-100"
+            maxlength="2000"
+            rows="10"
             name="bibliografiaComplementar"
             id="field_bibliografiaComplementar"
             data-cy="bibliografiaComplementar"
@@ -51,7 +63,9 @@
             >Pratica Laboratorial</label
           >
           <textarea
-            class="form-control"
+            class="form-control w-100"
+            maxlength="2000"
+            rows="10"
             name="praticaLaboratorial"
             id="field_praticaLaboratorial"
             data-cy="praticaLaboratorial"
