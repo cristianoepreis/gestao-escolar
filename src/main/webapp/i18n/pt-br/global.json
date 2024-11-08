@@ -15,7 +15,8 @@
         "nota": "Nota",
         "matricula": "Matrícula",
         "ementa": "Ementa",
-        "administrador": "Administrador"
+        "administrador": "Administrador",
+        "adminAuthority": "Administrador"
       },
       "account": {
         "main": "Conta",

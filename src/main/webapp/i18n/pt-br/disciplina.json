@@ -4,15 +4,15 @@
       "home": {
         "title": "Disciplinas",
         "refreshListLabel": "Atualizar lista",
-        "createLabel": "Criar novo Disciplina",
+        "createLabel": "Criar nova Disciplina",
         "createOrEditLabel": "Criar ou editar Disciplina",
-        "notFound": "Nenhum Disciplina encontrado"
+        "notFound": "Nenhuma Disciplina encontrada"
       },
-      "created": "Um novo Disciplina foi criado com o identificador {{ param }}",
-      "updated": "Um Disciplina foi atualizado com o identificador {{ param }}",
-      "deleted": "Um Disciplina foi excluído com o identificador {{ param }}",
+      "created": "Uma nova Disciplina foi criada com o identificador {{ param }}",
+      "updated": "Uma Disciplina foi atualizada com o identificador {{ param }}",
+      "deleted": "Uma Disciplina foi excluída com o identificador {{ param }}",
       "delete": {
-        "question": "Tem certeza de que deseja excluir Disciplina {{ nome }}?"
+        "question": "Tem certeza de que deseja excluir a Disciplina {{ nome }}?"
       },
       "detail": {
         "title": "Disciplina"
@@ -20,7 +20,7 @@
       "id": "ID",
       "nome": "Nome",
       "codigo": "Codigo",
-      "cargaHoraria": "Carga Horaria",
+      "cargaHoraria": "Carga Horária",
       "ementa": "Ementa",
       "curso": "Curso",
       "professor": "Professor"

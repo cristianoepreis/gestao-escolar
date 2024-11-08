@@ -4,13 +4,13 @@
       "home": {
         "title": "Matrículas",
         "refreshListLabel": "Atualizar lista",
-        "createLabel": "Criar novo Matrícula",
+        "createLabel": "Criar nova Matrícula",
         "createOrEditLabel": "Criar ou editar Matrícula",
         "notFound": "Nenhuma Matrícula encontrada"
       },
-      "created": "Um novo Matrícula foi criado com o identificador {{ param }}",
-      "updated": "Um Matrícula foi atualizado com o identificador {{ param }}",
-      "deleted": "Um Matrícula foi excluído com o identificador {{ param }}",
+      "created": "Uma nova Matrícula foi criada com o identificador {{ param }}",
+      "updated": "Uma Matrícula foi atualizada com o identificador {{ param }}",
+      "deleted": "Uma Matrícula foi excluída com o identificador {{ param }}",
       "delete": {
         "question": "Tem certeza de que deseja excluir a Matrícula do aluno {{ id }}?"
       },
