@@ -76,7 +76,7 @@
         <div class="mb-3">
           <label class="form-label" for="field_professor" jhiTranslate="gestaoEscolarApp.ementa.professor">Professor</label>
           <select
-            class="form-control"
+            class="form-select"
             id="field_professor"
             data-cy="professor"
             name="professor"
@@ -92,7 +92,7 @@
 
         <div class="mb-3">
           <label class="form-label" for="field_curso" jhiTranslate="gestaoEscolarApp.ementa.curso">Curso</label>
-          <select class="form-control" id="field_curso" data-cy="curso" name="curso" formControlName="curso" [compareWith]="compareCurso">
+          <select class="form-select" id="field_curso" data-cy="curso" name="curso" formControlName="curso" [compareWith]="compareCurso">
             <option [ngValue]="null"></option>
             @for (cursoOption of cursosSharedCollection; track $index) {
               <option [ngValue]="cursoOption">{{ cursoOption.nome }}</option>
@@ -116,6 +116,22 @@
             }
           </select>
         </div>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_ultimaAlteracao" jhiTranslate="gestaoEscolarApp.ementa.ultimaAlteracao"
+              >Última Alteração</label
+            >
+            <input
+              class="form-control"
+              name="ultimaAlteracao"
+              id="field_ultimaAlteracao"
+              data-cy="ultimaAlteracao"
+              formControlName="ultimaAlteracao"
+              [readonly]="true"
+            />
+          </div>
+        }
       </div>
 
       <div>

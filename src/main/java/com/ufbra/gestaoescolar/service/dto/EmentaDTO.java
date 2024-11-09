@@ -2,6 +2,7 @@ package com.ufbra.gestaoescolar.service.dto;
 
 import jakarta.persistence.Lob;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -23,6 +24,9 @@ public class EmentaDTO implements Serializable {
 
     @Lob
     private String praticaLaboratorial;
+
+    @Lob
+    private LocalDate ultimaAlteracao;
 
     private ProfessorDTO professor;
 
@@ -92,6 +96,14 @@ public class EmentaDTO implements Serializable {
 
     public void setDisciplina(DisciplinaDTO disciplina) {
         this.disciplina = disciplina;
+    }
+
+    public LocalDate getUltimaAlteracao() {
+        return ultimaAlteracao;
+    }
+
+    public void setUltimaAlteracao(LocalDate ultimaAlteracao) {
+        this.ultimaAlteracao = ultimaAlteracao;
     }
 
     @Override

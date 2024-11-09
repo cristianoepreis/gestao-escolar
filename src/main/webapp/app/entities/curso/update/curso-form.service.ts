@@ -44,7 +44,9 @@ export class CursoFormService {
       nome: new FormControl(cursoRawValue.nome, {
         validators: [Validators.required],
       }),
-      descricao: new FormControl(cursoRawValue.descricao),
+      descricao: new FormControl(cursoRawValue.descricao, {
+        validators: [Validators.required],
+      }),
       duracao: new FormControl(cursoRawValue.duracao, {
         validators: [Validators.required],
       }),

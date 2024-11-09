@@ -3,6 +3,10 @@ package com.ufbra.gestaoescolar.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.time.Instant;
+import java.time.LocalDate;
+import org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties.Data;
+import org.springframework.data.annotation.LastModifiedDate;
 
 /**
  * A Ementa.
@@ -10,6 +14,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "ementa")
 @SuppressWarnings("common-java:DuplicatedBlocks")
+@JsonIgnoreProperties(value = { "lastModifiedDate" }, allowGetters = true)
 public class Ementa implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,6 +40,10 @@ public class Ementa implements Serializable {
     @Lob
     @Column(name = "pratica_laboratorial")
     private String praticaLaboratorial;
+
+    @LastModifiedDate
+    @Column(name = "ultima_alteracao")
+    private LocalDate ultimaAlteracao;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = { "disciplinas" }, allowSetters = true)
@@ -115,6 +124,14 @@ public class Ementa implements Serializable {
         this.praticaLaboratorial = praticaLaboratorial;
     }
 
+    public LocalDate getUltimaAlteracao() {
+        return ultimaAlteracao;
+    }
+
+    public void setUltimaAlteracao(LocalDate ultimaAlteracao) {
+        this.ultimaAlteracao = ultimaAlteracao;
+    }
+
     public Professor getProfessor() {
         return this.professor;
     }
@@ -182,6 +199,7 @@ public class Ementa implements Serializable {
             ", bibliografiaBasica='" + getBibliografiaBasica() + "'" +
             ", bibliografiaComplementar='" + getBibliografiaComplementar() + "'" +
             ", praticaLaboratorial='" + getPraticaLaboratorial() + "'" +
+            ", ultimaAlteracao='" + getUltimaAlteracao() + "'" +
             "}";
     }
 }

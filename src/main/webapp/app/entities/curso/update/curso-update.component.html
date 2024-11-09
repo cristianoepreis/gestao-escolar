@@ -28,9 +28,25 @@
           }
         </div>
 
+        @let descricaoRef = editForm.get('descricao')!;
         <div class="mb-3">
           <label class="form-label" for="field_descricao" jhiTranslate="gestaoEscolarApp.curso.descricao">Descricao</label>
-          <input type="text" class="form-control" name="descricao" id="field_descricao" data-cy="descricao" formControlName="descricao" />
+          <textarea
+            class="form-control w-100"
+            maxlength="2000"
+            rows="4"
+            name="descricao"
+            id="field_descricao"
+            data-cy="descricao"
+            formControlName="descricao"
+          ></textarea>
+          @if (descricaoRef.invalid && (descricaoRef.dirty || descricaoRef.touched)) {
+            <div>
+              @if (editForm.get('descricao')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required"></small>
+              }
+            </div>
+          }
         </div>
 
         @let duracaoRef = editForm.get('duracao')!;
@@ -50,23 +66,6 @@
               >
             </div>
           }
-        </div>
-
-        <div class="mb-3">
-          <label for="field_alunos" jhiTranslate="gestaoEscolarApp.curso.aluno">Aluno</label>
-          <select
-            class="form-control"
-            id="field_alunos"
-            data-cy="aluno"
-            multiple
-            name="alunos"
-            formControlName="alunos"
-            [compareWith]="compareAluno"
-          >
-            @for (alunoOption of alunosSharedCollection; track $index) {
-              <option [ngValue]="alunoOption">{{ alunoOption.id }}</option>
-            }
-          </select>
         </div>
       </div>
 

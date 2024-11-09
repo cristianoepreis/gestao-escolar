@@ -96,10 +96,11 @@
         <div class="mb-3">
           <label for="field_cursos" jhiTranslate="gestaoEscolarApp.aluno.curso">Curso</label>
           <select
-            class="form-control"
+            class="form-select"
             id="field_cursos"
-            data-cy="curso"
+            size="3"
             multiple
+            data-cy="curso"
             name="cursos"
             formControlName="cursos"
             [compareWith]="compareCurso"

@@ -60,6 +60,12 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
+            <th scope="col" jhiSortBy="ultimaAlteracao">
+              <div class="d-flex">
+                <span jhiTranslate="gestaoEscolarApp.ementa.ultimaAlteracao">ultimaAlteracao</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -89,6 +95,9 @@
                     <a [routerLink]="['/professor', ementa.professor.id, 'view']">{{ ementa.professor.nome }}</a>
                   </div>
                 }
+              </td>
+              <td>
+                <a>{{ ementa.ultimaAlteracao }}</a>
               </td>
               <td class="text-end">
                 <div class="btn-group">

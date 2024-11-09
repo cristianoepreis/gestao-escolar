@@ -20,9 +20,9 @@
             <span>{{ cursoRef.nome }}</span>
           </dd>
           <dt><span jhiTranslate="gestaoEscolarApp.curso.descricao">Descricao</span></dt>
-          <dd>
-            <span>{{ cursoRef.descricao }}</span>
-          </dd>
+          <div>
+            <textarea class="form-control w-100" maxlength="255" rows="4">{{ cursoRef.descricao }}</textarea>
+          </div>
           <dt><span jhiTranslate="gestaoEscolarApp.curso.duracao">Duracao</span></dt>
           <dd>
             <span>{{ cursoRef.duracao }}</span>

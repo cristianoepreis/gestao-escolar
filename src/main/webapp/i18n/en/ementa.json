@@ -18,10 +18,11 @@
         "title": "Ementa"
       },
       "id": "ID",
-      "descricao": "Descricao",
-      "bibliografiaBasica": "Bibliografia Basica",
+      "descricao": "Descrição",
+      "bibliografiaBasica": "Bibliografia Básica",
       "bibliografiaComplementar": "Bibliografia Complementar",
-      "praticaLaboratorial": "Pratica Laboratorial",
+      "praticaLaboratorial": "Prática Laboratorial",
+      "ultimaAlteracao": "Última Alteração",
       "professor": "Professor",
       "curso": "Curso",
       "disciplina": "Disciplina"

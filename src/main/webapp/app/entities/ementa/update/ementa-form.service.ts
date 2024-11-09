@@ -22,6 +22,7 @@ type EmentaFormGroupContent = {
   bibliografiaBasica: FormControl<IEmenta['bibliografiaBasica']>;
   bibliografiaComplementar: FormControl<IEmenta['bibliografiaComplementar']>;
   praticaLaboratorial: FormControl<IEmenta['praticaLaboratorial']>;
+  ultimaAlteracao: FormControl<IEmenta['ultimaAlteracao']>;
   professor: FormControl<IEmenta['professor']>;
   curso: FormControl<IEmenta['curso']>;
   disciplina: FormControl<IEmenta['disciplina']>;
@@ -48,6 +49,7 @@ export class EmentaFormService {
       bibliografiaBasica: new FormControl(ementaRawValue.bibliografiaBasica),
       bibliografiaComplementar: new FormControl(ementaRawValue.bibliografiaComplementar),
       praticaLaboratorial: new FormControl(ementaRawValue.praticaLaboratorial),
+      ultimaAlteracao: new FormControl({ value: ementaRawValue.ultimaAlteracao, disabled: true }),
       professor: new FormControl(ementaRawValue.professor),
       curso: new FormControl(ementaRawValue.curso),
       disciplina: new FormControl(ementaRawValue.disciplina),

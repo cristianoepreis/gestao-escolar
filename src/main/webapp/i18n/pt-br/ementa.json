@@ -4,13 +4,13 @@
       "home": {
         "title": "Ementas",
         "refreshListLabel": "Atualizar lista",
-        "createLabel": "Criar novo Ementa",
+        "createLabel": "Criar nova Ementa",
         "createOrEditLabel": "Criar ou editar Ementa",
-        "notFound": "Nenhum Ementa encontrado"
+        "notFound": "Nenhuma Ementa encontrado"
       },
-      "created": "Um novo Ementa foi criado com o identificador {{ param }}",
-      "updated": "Um Ementa foi atualizado com o identificador {{ param }}",
-      "deleted": "Um Ementa foi excluído com o identificador {{ param }}",
+      "created": "Uma nova Ementa foi criada com o identificador {{ param }}",
+      "updated": "Uma Ementa foi atualizada com o identificador {{ param }}",
+      "deleted": "Uma Ementa foi excluída com o identificador {{ param }}",
       "delete": {
         "question": "Tem certeza de que deseja excluir Ementa {{ id }}?"
       },
@@ -18,10 +18,11 @@
         "title": "Ementa"
       },
       "id": "ID",
-      "descricao": "Descricao",
-      "bibliografiaBasica": "Bibliografia Basica",
+      "descricao": "Descrição",
+      "bibliografiaBasica": "Bibliografia Básica",
       "bibliografiaComplementar": "Bibliografia Complementar",
-      "praticaLaboratorial": "Pratica Laboratorial",
+      "praticaLaboratorial": "Prática Laboratorial",
+      "ultimaAlteracao": "Última Alteração",
       "professor": "Professor",
       "curso": "Curso",
       "disciplina": "Disciplina"
