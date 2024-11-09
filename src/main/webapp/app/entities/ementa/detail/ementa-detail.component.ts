@@ -30,23 +30,6 @@ export class EmentaDetailComponent {
     window.history.back();
   }
 
-  // generatePDF(): void {
-  //   const doc = new jsPDF();
-
-  //   // Seleciona o conteúdo HTML e força o tipo para HTMLElement
-  //   const content = document.querySelector('.d-flex') as HTMLElement;
-  //   // Remover a verificação condicional desnecessária, pois `content` sempre será truthy
-  //   doc.html(content, {
-  //     callback(pdfDoc) {
-  //       pdfDoc.save('ementa.pdf'); // Salva o PDF com o nome "ementa.pdf"
-  //     },
-  //     x: 10,
-  //     y: 10,
-  //     width: 180, // Define a largura do conteúdo no PDF
-  //     windowWidth: 675, // Largura da janela de visualização
-  //   });
-  // }
-
   generatePDF(): void {
     const doc = new jsPDF();
 
@@ -62,41 +45,67 @@ export class EmentaDetailComponent {
     const ementaValue = this.ementa(); // Acessando o valor do sinal
 
     // Posições dos textos
-    doc.text('Disciplina:', 10, y);
-    doc.text(ementaValue?.disciplina?.nome ?? '-', 50, y);
+    doc.text('Curso:', 10, y);
+    doc.text(ementaValue?.curso?.nome ?? '-', 30, y);
+
+    doc.text('Disciplina:', 100, y);
+    doc.text(ementaValue?.disciplina?.nome ?? '-', 130, y);
     y += 10;
+
+    // Adicionando áreas de texto para Descrição e Bibliografia com moldura
+    doc.setFontSize(12);
+
+    // Descrição
+    doc.text('Descrição:', 10, y);
+    doc.setFontSize(10);
+    const descricaoText = doc.splitTextToSize(ementaValue?.descricao ?? '-', 180);
+    doc.text(descricaoText, 10, y + 10);
+
+    // Dimensões e moldura da Descrição
+    const descricaoHeight = doc.getTextDimensions(descricaoText).h;
+    // doc.rect(8, y - 2, 184, descricaoHeight + 18);
+    doc.rect(8, y + 5, 184, descricaoHeight + 25); // Moldura ao redor do texto
+    y += descricaoHeight + 10; // Ajusta 'y' com espaçamento adicional
+
+    // Bibliografia Básica
+    doc.setFontSize(12);
+    doc.text('Bibliografia Básica:', 10, y);
+    doc.setFontSize(10);
+    const bibliografiaBasicaText = doc.splitTextToSize(ementaValue?.bibliografiaBasica ?? '-', 180);
+    doc.text(bibliografiaBasicaText, 10, y + 10);
+
+    // Dimensões e moldura da Bibliografia Básica
+    const bibliografiaBasicaHeight = doc.getTextDimensions(bibliografiaBasicaText).h;
+    doc.rect(8, y - 2, 184, bibliografiaBasicaHeight + 18); // Moldura ao redor do texto
+    y += bibliografiaBasicaHeight + 30;
+
+    // Bibliografia Complementar
+    doc.setFontSize(12);
+    doc.text('Bibliografia Complementar:', 10, y);
+    doc.setFontSize(10);
+    const bibliografiaComplementarText = doc.splitTextToSize(ementaValue?.bibliografiaComplementar ?? '-', 180);
+    doc.text(bibliografiaComplementarText, 10, y + 10);
+
+    // Dimensões e moldura da Bibliografia Complementar
+    const bibliografiaComplementarHeight = doc.getTextDimensions(bibliografiaComplementarText).h;
+    doc.rect(8, y - 2, 184, bibliografiaComplementarHeight + 18); // Moldura ao redor do texto
+    y += bibliografiaComplementarHeight + 30;
+
+    // Prática Laboratorial
+    doc.setFontSize(12);
+    doc.text('Prática Laboratorial:', 10, y);
+    doc.setFontSize(10);
+    const praticaLaboratorialText = doc.splitTextToSize(ementaValue?.praticaLaboratorial ?? '-', 180);
+    doc.text(praticaLaboratorialText, 10, y + 10);
+
+    // Dimensões e moldura da Prática Laboratorial
+    const praticaLaboratorialHeight = doc.getTextDimensions(praticaLaboratorialText).h;
+    doc.rect(8, y - 2, 184, praticaLaboratorialHeight + 18); // Moldura ao redor do texto
+    y += praticaLaboratorialHeight + 30;
 
     doc.text('Professor:', 10, y);
     doc.text(ementaValue?.professor?.nome ?? '-', 50, y);
     y += 10;
-
-    doc.text('Curso:', 10, y);
-    doc.text(ementaValue?.curso?.nome ?? '-', 50, y);
-    y += 10;
-
-    // Adicionando áreas de texto para Descrição e Bibliografia
-    doc.setFontSize(12);
-    doc.text('Descrição:', 10, y);
-    doc.setFontSize(10);
-    doc.text(ementaValue?.descricao ?? '-', 10, y + 10, { maxWidth: 180 }); // Quebra de linha automática para texto longo
-    y += 30;
-
-    doc.setFontSize(12);
-    doc.text('Bibliografia Básica:', 10, y);
-    doc.setFontSize(10);
-    doc.text(ementaValue?.bibliografiaBasica ?? '-', 10, y + 10, { maxWidth: 180 });
-    y += 30;
-
-    doc.setFontSize(12);
-    doc.text('Bibliografia Complementar:', 10, y);
-    doc.setFontSize(10);
-    doc.text(ementaValue?.bibliografiaComplementar ?? '-', 10, y + 10, { maxWidth: 180 });
-    y += 30;
-
-    doc.setFontSize(12);
-    doc.text('Prática Laboratorial:', 10, y);
-    doc.setFontSize(10);
-    doc.splitTextToSize(ementaValue?.praticaLaboratorial ?? '-', 10, y + 10);
 
     // Salvando o PDF
     doc.save('ementa_template.pdf');
