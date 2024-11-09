@@ -61,8 +61,8 @@
 
             <div class="col-sm-6">
               <dl class="row">
-                <dt class="col-sm-5 mt-3"><span jhiTranslate="gestaoEscolarApp.ementa.ultimaAlteracao">ultimaAlteracao</span></dt>
-                <dd class="col-sm-8 mt-3">
+                <dt class="col-sm-3 mt-3"><span jhiTranslate="gestaoEscolarApp.ementa.ultimaAlteracao">ultimaAlteracao</span></dt>
+                <dd class="col-sm-8 mt-3 d-flex">
                   <span>{{ ementaRef.ultimaAlteracao }}</span>
                 </dd>
               </dl>
@@ -92,6 +92,9 @@
 
         <button type="button" [routerLink]="['/ementa', ementaRef.id, 'edit']" class="btn btn-primary">
           <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+        <button type="button" class="btn btn-primary" (click)="generatePDF()">
+          <fa-icon icon="file-pdf"></fa-icon>&nbsp;<span jhiTranslate="entity.action.generatePdf">Gerar PDF</span>
         </button>
       </div>
     }
