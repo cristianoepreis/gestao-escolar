@@ -1,6 +1,17 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import {
+  faBars,
+  faBookOpen,
+  faClipboard,
+  faFile,
+  faPeopleGroup,
+  faPersonChalkboard,
+  faSchool,
+  faUserShield,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { StateStorageService } from 'app/core/auth/state-storage.service';
 import SharedModule from 'app/shared/shared.module';
@@ -36,7 +47,8 @@ export default class NavbarComponent implements OnInit {
   private profileService = inject(ProfileService);
   private router = inject(Router);
 
-  constructor() {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faUserShield, faPersonChalkboard, faPeopleGroup, faBookOpen, faSchool, faBars, faFile, faClipboard);
     if (VERSION) {
       this.version = VERSION.toLowerCase().startsWith('v') ? VERSION : `v${VERSION}`;
     }
