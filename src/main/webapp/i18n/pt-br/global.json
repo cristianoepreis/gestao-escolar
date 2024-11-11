@@ -107,6 +107,7 @@
       "open": "Abrir",
       "save": "Salvar",
       "view": "Visualizar",
+      "generatePdf": "Gerar PDF",
       "show": "Mostrar {{otherEntity}}"
     },
     "detail": {
